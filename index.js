@@ -1,16 +1,16 @@
 /*
-	引数1,2の配列orオブジェクトの中身を見て全く同じかどうかをBooleanで返すぞ
+	引数の配列orオブジェクトの中身を見て全く同じかどうかをBooleanで返すぞ
 
 	詳しく
 		引数をチェックして配列かオブジェクトで振り分け
 		どちらでもなければエラーを投げる
 
 */
-function hasSameContents(arg1, arg2){
-	if( isArray(arg1, arg2) ){
-		return hasSameContents_Array(arg1, arg2);
-	}else if( isObject(arg1, arg2) ){
-		return hasSameContents_Object(arg1, arg2);
+function hasSameContents(...args){
+	if( isArray(...args) ){
+		return hasSameContents_Array(...args);
+	}else if( isObject(...args) ){
+		return hasSameContents_Object(...args);
 	}else{
 		throw new TypeError('invalid argument');
 	}

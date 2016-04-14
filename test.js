@@ -46,5 +46,7 @@ const caseArr = [
 caseArr.forEach( ([arg1, arg2, result], index)=>{
 	if(hasSameContents(arg1, arg2)!==result){
 		throw new Error(`failed: ${index}`);
-	};
+	}else{
+		console.log(`success: ${index}`);
+	}
 });
