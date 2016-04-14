@@ -1,52 +1,59 @@
 console.log('has-same-contents: test');
 import hasSameContents from './';
 
+const testArr = [];
+
 // 空の配列
-const case0 = [[], [], true];
+testArr.push( ()=>{
+	return hasSameContents([], []);
+});
 
 // 配列で同じ中身
-const case1 = [[1,2,3], [1,2,3], true];
+testArr.push( ()=>{
+	return hasSameContents([1,2,3], [1,2,3]);
+});
 
 // 配列で違う中身
-const case2 = [[1,2,3],	[4,5,6], false];
+testArr.push( ()=>{
+	return !hasSameContents([1,2,3], [4,5,6]);
+});
 
 // 長さの違う配列
-const case3 = [[1], [2,3], false];
+testArr.push( ()=>{
+	return !hasSameContents([1], [2,3]);
+});
 
 // オブジェクトで同じ中身
-const case4 = [{key:"value"}, {key:"value"}, true];
+testArr.push( ()=>{
+	return hasSameContents({key:"value"}, {key:"value"});
+});
 
 // オブジェクトで違う中身
-const case5 = [{a:1}, {a:2}, false];
+testArr.push( ()=>{
+	return !hasSameContents({a:1}, {a:2});
+});
 
 // オブジェクトで違うProp数
-const case6 = [{a:1}, {a:1, b:2}, false];
+testArr.push( ()=>{
+	return !hasSameContents({a:1}, {a:1, b:2});
+});
 
 // 配列で違う配列を参照
-const case7 = [[[]], [[]], false];
+testArr.push( ()=>{
+	return !hasSameContents([[]], [[]]);
+});
 
 // オブジェクトが同じ配列を参照
-const case8 = do{
+testArr.push( ()=>{
 	const arr = [];
-	[{arr}, {arr}, true];
-}
+	return hasSameContents({arr}, {arr}, true);
+});
 
 // hasSameContents()
-const caseArr = [
-	case0,
-	case1,
-	case2,
-	case3,
-	case4,
-	case5,
-	case6,
-	case7,
-	case8
-];
-caseArr.forEach( ([arg1, arg2, result], index)=>{
-	if(hasSameContents(arg1, arg2)!==result){
-		throw new Error(`failed: ${index}`);
-	}else{
+testArr.forEach( (func, index)=>{
+	if(func){
 		console.log(`success: ${index}`);
+	}else{
+		throw new Error(`failed: ${index}`);
 	}
 });
