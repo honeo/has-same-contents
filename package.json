@@ -4,7 +4,7 @@
   "description": "配列やオブジェクトの中身が同じかチェックする",
   "main": "index.js",
   "scripts": {
-    "test": "babel-node test.js"
+    "test": "babel-node test.js --presets es2015 stage-0"
   },
   "author": "honeo",
   "license": "MIT",
