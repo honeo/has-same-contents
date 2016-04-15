@@ -27,7 +27,7 @@ function hasSameContents(...args){
 function hasSameContents_Array(baseArr, ...arrs){
 	return arrs.every( (arr)=>{
 		return baseArr.length===arr.length && baseArr.every( (value, index)=>{
-			return value===arr2[index];
+			return value===arr[index];
 		});
 	});
 }
