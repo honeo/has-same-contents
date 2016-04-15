@@ -19,24 +19,34 @@ function hasSameContents(...args){
 
 /*
 	配列の場合
+	引数1の配列を基準に2以降に以下を繰り返す
 		まず長さが違えばfalse
 		同じなら中身を一個ずつ比べて違いがあればfalse
 		一周したらtrue
 */
-function hasSameContents_Array(arr1, arr2){
-	return arr1.length===arr2.length && arr1.every( (value,index) => value===arr2[index] );
+function hasSameContents_Array(baseArr, ...arrs){
+	return arrs.every( (arr)=>{
+		return baseArr.length===arr.length && baseArr.every( (value, index)=>{
+			return value===arr2[index];
+		});
+	});
 }
 
 /*
 	オブジェクトの場合
+	引数1のオブジェクトを基準に2以降に以下を繰り返す
 		keyを配列化して長さ比較
 			違えばfalse
 		同じならkeyの中身を総当りチェック
 */
-function hasSameContents_Object(obj1, obj2){
-	const keyArr1 = Object.keys(obj1);
-	const keyArr2 = Object.keys(obj2);
-	return keyArr1.length===keyArr2.length && keyArr1.every( key => obj1[key]===obj2[key] );
+function hasSameContents_Object(baseObj, ...objs){
+	const baseKeyArr = Object.keys(baseObj);
+	return objs.every( (obj)=>{
+		const keyArr = Object.keys(obj);
+		return baseKeyArr.length===keyArr.length && baseKeyArr.every( (key)=>{
+			return baseObj[key]===obj[key];
+		});
+	});
 }
 
 /*

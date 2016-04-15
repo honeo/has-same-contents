@@ -49,7 +49,29 @@ testArr.push( ()=>{
 	return hasSameContents({arr}, {arr}, true);
 });
 
-// hasSameContents()
+// 配列みっつ比較
+testArr.push( ()=>{
+	let arr5 = [1, 2, 3],
+		arr6 = [1, 2, 3],
+		arr7 = [1, 2, 3];
+	const result =  hasSameContents(arr5, arr6, arr7);
+
+	arr5.push(4);
+	return result && !hasSameContents(arr5, arr6, arr7);
+});
+
+// オブジェクトみっつ比較
+testArr.push( ()=>{
+	let obj3 = {key: 'value', foo: 'bar'},
+		obj4 = {key: 'value', foo: 'bar'},
+		obj5 = {key: 'value', foo: 'bar'};
+	const result = 	hasSameContents(obj3, obj4, obj5);
+
+	delete obj3.foo;
+	return result && !hasSameContents(obj3, obj4, obj5);
+});
+
+// まとめ
 testArr.forEach( (func, index)=>{
 	if(func){
 		console.log(`success: ${index}`);
